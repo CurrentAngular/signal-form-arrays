@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  margin-top: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form {
+  max-width: 800px;
+  margin: auto;
+  outline: 1px solid tomato;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.cancel {
+  color: darkred;
+}
+
+.actions {
+  padding: 30px 0 0;
+  display: flex;
+  gap: 16px;
+}

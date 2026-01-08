@@ -1,0 +1,42 @@
+<h2 class="title">user profile</h2>
+<form class="form" (submit.prevent)="onSubmit()">
+  <div class="row">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>First name</mat-label>
+      <input matInput placeholder="First name" [field]="form.firstName" />
+      @let firstName = form.firstName();
+      @if (firstName.touched() && firstName.invalid()) {
+        @for (err of firstName.errors(); track err.kind) {
+          <mat-error>{{ err.message }}</mat-error>
+        }
+      }
+    </mat-form-field>
+    <!-- <button matIconButton class="cancel">
+      <mat-icon>cancel</mat-icon>
+    </button> -->
+  </div>
+
+  <div class="row">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input matInput placeholder="Last name" [field]="form.lastName" />
+      @let lastName = form.lastName();
+      @if (lastName.touched() && lastName.invalid()) {
+        @for (err of lastName.errors(); track err.kind) {
+          <mat-error>{{ err.message }}</mat-error>
+        }
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <h4>social links</h4>
+  </div>
+
+  <div class="actions">
+    <button matButton="outlined" type="submit">save profile</button>
+    <button matButton="outlined" type="button" (click.stop)="onCancel()">
+      cancel
+    </button>
+  </div>
+</form>
