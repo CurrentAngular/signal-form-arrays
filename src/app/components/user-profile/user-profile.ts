@@ -26,11 +26,21 @@ export class UserProfile {
   readonly form = form(this.model, userProfileSchema);
 
   addSocialLink(): void {
-    //
+    this.model.update((currentModel) => {
+      return {
+        ...currentModel,
+        socialLinks: [...currentModel.socialLinks, ''],
+      };
+    });
   }
 
-  removeSocialLink(): void {
-    //
+  removeSocialLink(index: number): void {
+    this.model.update((currentModel) => {
+      return {
+        ...currentModel,
+        socialLinks: currentModel.socialLinks.filter((_, i) => i !== index),
+      };
+    });
   }
 
   onSubmit(): void {

@@ -1,42 +1,73 @@
 <h2 class="title">user profile</h2>
 <form class="form" (submit.prevent)="onSubmit()">
-  <div class="row">
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>First name</mat-label>
-      <input matInput placeholder="First name" [field]="form.firstName" />
-      @let firstName = form.firstName();
-      @if (firstName.touched() && firstName.invalid()) {
-        @for (err of firstName.errors(); track err.kind) {
-          <mat-error>{{ err.message }}</mat-error>
-        }
-      }
-    </mat-form-field>
-    <!-- <button matIconButton class="cancel">
-      <mat-icon>cancel</mat-icon>
-    </button> -->
-  </div>
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>First name</mat-label>
+    <input
+      matInput
+      placeholder="First name"
+      [field]="form.firstName"
+      autofocus="false"
+    />
+  </mat-form-field>
 
-  <div class="row">
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Last name</mat-label>
-      <input matInput placeholder="Last name" [field]="form.lastName" />
-      @let lastName = form.lastName();
-      @if (lastName.touched() && lastName.invalid()) {
-        @for (err of lastName.errors(); track err.kind) {
-          <mat-error>{{ err.message }}</mat-error>
-        }
-      }
-    </mat-form-field>
-  </div>
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Last name</mat-label>
+    <input
+      matInput
+      placeholder="Last name"
+      [field]="form.lastName"
+      autofocus="false"
+    />
+  </mat-form-field>
 
-  <div class="row">
-    <h4>social links</h4>
+  <div class="social">
+    <h4 class="social-title">social links</h4>
+
+    @let socialLinks = model().socialLinks;
+    @if (socialLinks.length === 0) {
+      <mat-error class="social-error">
+        No social links yet! Please add a new link below
+      </mat-error>
+    } @else {
+      @for (link of socialLinks; track $index) {
+        <div class="row">
+          <mat-form-field class="form-field m-r-8" appearance="outline">
+            <input matInput [field]="form.socialLinks[$index]" />
+
+            @let socialLink = form.socialLinks[$index]();
+            @if (socialLink.touched() && socialLink.invalid()) {
+              @for (err of socialLink.errors(); track err.kind) {
+                <mat-error>{{ err.message }}</mat-error>
+              }
+            }
+          </mat-form-field>
+
+          <button
+            matIconButton
+            class="cancel"
+            title="Remove social link"
+            (click)="removeSocialLink($index)"
+          >
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
+      }
+    }
+
+    <div class="social-actions">
+      <button matButton="outlined" type="button" (click)="addSocialLink()">
+        Add social link
+      </button>
+    </div>
   </div>
 
   <div class="actions">
-    <button matButton="outlined" type="submit">save profile</button>
-    <button matButton="outlined" type="button" (click.stop)="onCancel()">
-      cancel
+    <button
+      matButton="outlined"
+      type="submit"
+      [disabled]="form().submitting() || form().invalid()"
+    >
+      save profile
     </button>
   </div>
 </form>
