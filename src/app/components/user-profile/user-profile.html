@@ -5,7 +5,7 @@
     <input
       matInput
       placeholder="First name"
-      [field]="form.firstName"
+      [formField]="form.firstName"
       autofocus="false"
     />
   </mat-form-field>
@@ -15,7 +15,7 @@
     <input
       matInput
       placeholder="Last name"
-      [field]="form.lastName"
+      [formField]="form.lastName"
       autofocus="false"
     />
   </mat-form-field>
@@ -32,20 +32,24 @@
       @for (link of socialLinks; track $index) {
         <div class="row">
           <mat-form-field class="form-field m-r-8" appearance="outline">
-            <input type="url" matInput [field]="form.socialLinks[$index].url" />
+            <input
+              type="url"
+              matInput
+              [formField]="form.socialLinks[$index].url"
+            />
           </mat-form-field>
           <mat-form-field class="form-field m-r-8" appearance="outline">
             <input
               type="text"
               matInput
-              [field]="form.socialLinks[$index].platform"
+              [formField]="form.socialLinks[$index].platform"
             />
           </mat-form-field>
           <mat-form-field class="form-field m-r-8" appearance="outline">
             <input
               type="number"
               matInput
-              [field]="form.socialLinks[$index].year"
+              [formField]="form.socialLinks[$index].year"
             />
           </mat-form-field>
 
