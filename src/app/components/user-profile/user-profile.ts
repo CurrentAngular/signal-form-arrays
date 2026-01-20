@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { initialData } from './user-profile.model';
+import { initialData, initialProfileLink } from './user-profile.model';
 import { IUserProfile } from './user-profile.interface';
 import { Field, form, submit } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,7 +29,7 @@ export class UserProfile {
     this.model.update((currentModel) => {
       return {
         ...currentModel,
-        socialLinks: [...currentModel.socialLinks, ''],
+        socialLinks: [...currentModel.socialLinks, { ...initialProfileLink }],
       };
     });
   }
