@@ -32,24 +32,55 @@
       @for (link of socialLinks; track $index) {
         <div class="row">
           <mat-form-field class="form-field m-r-8" appearance="outline">
-            <input matInput [field]="form.socialLinks[$index]" />
-
-            @let socialLink = form.socialLinks[$index]();
-            @if (socialLink.touched() && socialLink.invalid()) {
-              @for (err of socialLink.errors(); track err.kind) {
-                <mat-error>{{ err.message }}</mat-error>
-              }
-            }
+            <input type="url" matInput [field]="form.socialLinks[$index].url" />
+          </mat-form-field>
+          <mat-form-field class="form-field m-r-8" appearance="outline">
+            <input
+              type="text"
+              matInput
+              [field]="form.socialLinks[$index].platform"
+            />
+          </mat-form-field>
+          <mat-form-field class="form-field m-r-8" appearance="outline">
+            <input
+              type="number"
+              matInput
+              [field]="form.socialLinks[$index].year"
+            />
           </mat-form-field>
 
           <button
-            matIconButton
-            class="cancel"
-            title="Remove social link"
+            matMiniFab
+            aria-label="Remove social link"
             (click)="removeSocialLink($index)"
+            class="button"
           >
-            <mat-icon>cancel</mat-icon>
+            <mat-icon>delete</mat-icon>
           </button>
+        </div>
+
+        <!-- errors block -->
+        <div class="row column">
+          @let platform = form.socialLinks[$index].platform();
+          @if (platform.touched() && platform.invalid()) {
+            @for (err of platform.errors(); track err.kind) {
+              <mat-error class="error">{{ err.message }}</mat-error>
+            }
+          }
+
+          @let url = form.socialLinks[$index].url();
+          @if (url.touched() && url.invalid()) {
+            @for (err of url.errors(); track err.kind) {
+              <mat-error class="error">{{ err.message }}</mat-error>
+            }
+          }
+
+          @let year = form.socialLinks[$index].year();
+          @if (year.touched() && year.invalid()) {
+            @for (err of year.errors(); track err.kind) {
+              <mat-error class="error">{{ err.message }}</mat-error>
+            }
+          }
         </div>
       }
     }
