@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { initialData, initialProfileLink } from './user-profile.model';
 import { IUserProfile } from './user-profile.interface';
-import { Field, form, submit } from '@angular/forms/signals';
+import { form, FormField, submit } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    Field,
+    FormField,
     MatIconModule,
   ],
   templateUrl: './user-profile.html',
