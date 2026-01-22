@@ -1,0 +1,20 @@
+input {
+  // Базовые стили поля ввода
+  padding: 8px 12px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+
+  // Стили при фокусе
+  &:focus {
+    outline: none;
+    border-color: #ffa500;
+    box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.25);
+  }
+
+  // Стили при наведении
+  &:hover:not(:focus) {
+    border-color: #999;
+  }
+}
