@@ -3,19 +3,20 @@ import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
   selector: 'sfa-custom-input',
-  imports: [],
   templateUrl: './custom-input.html',
   styleUrl: './custom-input.scss',
 })
 export class CustomInput implements FormValueControl<string> {
   value = model('');
-  inputRef = viewChild<HTMLInputElement>('inputRef');
+  inputRef = viewChild<ElementRef<HTMLInputElement>>('inputRef');
 
   focus(): void {
-    const input = this.inputRef();
-    if (!input) return;
+    const inputElementRef = this.inputRef();
+    if (!inputElementRef) return;
 
-    input.focus();
-    input.select();
+    const nativeElement = inputElementRef.nativeElement;
+    nativeElement.focus();
+    nativeElement.select();
+    console.log('Focused');
   }
 }

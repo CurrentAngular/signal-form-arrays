@@ -56,9 +56,9 @@ export class UserProfile {
   }
 
   onFocus(): void {
-    this.form.lastName().focusBoundControl();
+    // this.form.lastName().focusBoundControl();
 
     // does not work on a custom element
-    // this.form.email().focusBoundControl();
+    this.form.email().focusBoundControl();
   }
 }
