@@ -1,0 +1,7 @@
+<input
+  #inputRef
+  type="text"
+  [value]="value()"
+  (input)="value.set($event.target.value)"
+  class="custom-input"
+/>

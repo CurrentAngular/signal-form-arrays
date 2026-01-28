@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { userProfileSchema } from './user-profile.schema';
 import { MatIconModule } from '@angular/material/icon';
+import { CustomInput } from '../custom-input/custom-input';
 
 @Component({
   selector: 'sfa-user-profile',
@@ -16,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     FormField,
     MatIconModule,
+    CustomInput,
   ],
   templateUrl: './user-profile.html',
   styleUrl: './user-profile.scss',
@@ -53,7 +55,10 @@ export class UserProfile {
     });
   }
 
-  onCancel(): void {
-    //
+  onFocus(): void {
+    // this.form.lastName().focusBoundControl();
+
+    // does not work on a custom element
+    this.form.email().focusBoundControl();
   }
 }

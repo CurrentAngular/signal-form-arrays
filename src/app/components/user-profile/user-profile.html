@@ -96,6 +96,10 @@
     </div>
   </div>
 
+  <div class="row">
+    <sfa-custom-input [formField]="form.email" />
+  </div>
+
   <div class="actions">
     <button
       matButton="outlined"
@@ -103,6 +107,9 @@
       [disabled]="form().submitting() || form().invalid()"
     >
       save profile
+    </button>
+    <button matButton="outlined" type="button" (click)="onFocus()">
+      focus form field
     </button>
   </div>
 </form>

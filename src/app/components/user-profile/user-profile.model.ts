@@ -4,6 +4,7 @@ export const initialData: IUserProfile = {
   firstName: '',
   lastName: '',
   socialLinks: [],
+  email: '',
 };
 
 export const initialProfileLink: ProfileLink = {
